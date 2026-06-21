@@ -94,8 +94,10 @@ abstract class BasePlaywrightTest {
     }
 
     protected void waitForNextUse(int testIdx) {
+        int minMinutes = 10;
+        int maxMinutes = 30;
         int randomSeconds = java.util.concurrent.ThreadLocalRandom.current().nextInt(10, 60);
-        int randomMinutes = java.util.concurrent.ThreadLocalRandom.current().nextInt(1, 10);
+        int randomMinutes = java.util.concurrent.ThreadLocalRandom.current().nextInt(minMinutes, maxMinutes);
         writePollLogLine(randomMinutes,randomSeconds,"waiting", testIdx);
         pagePoll.waitForTimeout(randomSeconds * 1000L);
         pagePoll.waitForTimeout(randomMinutes * 60_000L);
